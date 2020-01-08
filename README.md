@@ -19,3 +19,5 @@
     * every request passes through multiple middlewares
     * next(); // Allows the request to continue to the next middleware in line
       until res.send() is encountered it won't return to browser
+    * can use app.use('/', (req,res,next) => {}) to server request or there is app.get(), app.post(), app.delete(), 
+      app.patch(), app.put()  
