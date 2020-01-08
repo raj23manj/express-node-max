@@ -21,3 +21,6 @@
       until res.send() is encountered it won't return to browser
     * can use app.use('/', (req,res,next) => {}) to server request or there is app.get(), app.post(), app.delete(), 
       app.patch(), app.put()  
+    * when using app.use() the order of the routes matter, hence not use where as usign app.get() ... will do check
+      internally
+    * use app.use as failsafe for any other route not found    
