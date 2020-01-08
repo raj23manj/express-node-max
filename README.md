@@ -13,3 +13,9 @@
     * Tools Used
       * 51 Node.js max
       * https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+
+  * Middleware
+    * core concept of express    
+    * every request passes through multiple middlewares
+    * next(); // Allows the request to continue to the next middleware in line
+      until res.send() is encountered it won't return to browser
