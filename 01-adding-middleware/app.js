@@ -4,6 +4,8 @@ const express = require('express');
 
 const app = express();
 
+const path = require('path');
+
 const adminRoutes = require('./routes/admin');
 
 const shopRoutes = require('./routes/shop');
@@ -13,23 +15,28 @@ const bodyParser = require('body-parser');
 // this is a middle ware, for post form
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+// middleware to serve static file
+app.use(express.static(path.join(__dirname, 'public')));
+
 // app.use((req, res, next) => {
 //     console.log('In the middleware!');
 //     next(); // Allows the request to continue to the next middleware in line
 // });
 
 // for all requests
-app.use('/', (req, res, next) => {
-    console.log('This middleware is always run');
-    next();
-});
+// app.use('/', (req, res, next) => {
+//     console.log('This middleware is always run');
+//     next();
+// });
 
 app.use('/admin', adminRoutes); // /admin/add-product
 app.use(shopRoutes);
 
 // to handle error for no routes, catch all routes
 app.use((req, res, next) => {
-    res.status(404).send('<h1>Page Not Found!</h1>');
+    // res.status(404).send('<h1>Page Not Found!</h1>');
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
 // app.use('/add-product', (req, res, next) => {
